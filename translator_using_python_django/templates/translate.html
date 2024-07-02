@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Result</title>
+</head>
+<body>
+    <h2>Translation Result:</h2>
+    <p><strong>Marathi Text:</strong> {{ marathi_text }}</p>
+    <p><strong>Hindi Text:</strong> {{ hindi_text }}</p>
+    <p><a href="/">Translate Another Text</a></p>
+<button onclick="speakText()">Speak</button>
+</body>
+
+  <script src="text-to-speech.js"></script>
+  <script>
+
+    function speakText() {
+      const textInput = document.getElementById({{ hindi_text }}).value;
+
+      if (!textInput) {
+        alert('Please enter some text to speak.');
+        return;
+      }
+
+      const speech = new SpeechSynthesisUtterance(); ///userdefined variable
+      speech.text = textInput;
+      speech.lang = 'en-US'; 
+      speech.volume = 1;
+      speech.rate = 1; 
+      speech.pitch = 1; 
+
+      window.speechSynthesis.speak(speech);
+    }
+
+  </script>
+</html>
